@@ -1,0 +1,268 @@
+  /* Header Styles */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 5rem;
+    background-color: var(--color-background-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+  }
+  
+  /* Overlay Styles - This will create the blur effect */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darken the background */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    z-index: 998; /* Just below the navbar */
+  }
+  
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: left;
+    width: 30%;
+  }
+  
+  .logo-icon {
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+  }
+  
+  .logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+  
+  .logo-text span {
+    color: var(--color-accent);
+    font-style: italic;
+    margin-right: 2px;
+    font-size: 1.9rem;
+    text-shadow: 1px 1px 5px var(--color-shadow-accent);
+  }
+  
+  /* Navigation */
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-content: space-between;
+    width: 80%;
+    transition: transform 0.3s ease-in-out;
+    background-color: var(--color-background-primary); /* Match the color scheme */
+  }
+  
+  .nav-open {
+    background-color: var(--color-background-primary); /* Keep background when open */
+  }
+  
+  .nav-list {
+    display: flex;
+    margin-left: 2rem;
+    list-style-type: none;
+    gap: 2rem;
+  }
+  
+  .nav-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: var(--color-accent);
+  }
+  
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  /* Header Buttons */
+  .head-btn {
+    padding: 12px 36px;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--color-button-background);
+    color: var(--color-button-text);
+    font-size: 14px;
+    margin: 0 10px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    
+  }
+  
+  .head-btn:hover {
+    background-color: var(--color-hover-accent);
+    transform: translateY(-2px);
+  }
+  
+  .head-btn.sign-up {
+    background-color: #2575fc;
+  }
+  
+  .head-btn.sign-up:hover {
+    background-color: #6a11cb;
+  }
+  .user-info{
+    display: flex;
+  }
+  /* Mobile Styling */
+  @media (max-width: 992px) {
+    .head-btn{
+        width: 100%;
+    margin-bottom: 13px;
+    }
+    .menu-toggle {
+      display: inline-block;
+      cursor: pointer;
+    }
+    
+    .hamburger-wrapper {
+      width: 30px; /* Match the width of the bars */
+      height: 30px; /* Add enough height to cover the spaces */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .hamburger {
+      width: 30px;
+      height: 3px;
+      background-color: var(--color-text-primary);
+      border-radius: 3px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger::before,
+    .hamburger::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background-color: var(--color-text-primary);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    
+    .hamburger::before {
+      top: -8px;
+    }
+    
+    .hamburger::after {
+      bottom: -8px;
+    }
+    
+    .hamburger.open {
+      background-color: transparent;
+    }
+    
+    .hamburger.open::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+    
+    .hamburger.open::after {
+      transform: rotate(-45deg);
+      bottom: 0;
+    }
+    
+    /* Ensure the entire wrapper is clickable */
+    .hamburger-wrapper {
+      cursor: pointer;
+    }
+    
+  
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: var(--color-background-primary); /* Match background */
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      transform: translateX(-100%);
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 2rem 1.5rem;
+      z-index: 999;
+    }
+  
+    .nav.nav-open {
+      transform: translateX(0);
+    }
+  
+    .nav-list {
+      margin-top: 45px;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+    }
+  
+    .auth-buttons {
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+  
+    .header {
+      justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+  
+    .logo {
+      order: 2;
+      width: auto;
+      margin-left: auto;
+    }
+  
+    .menu-toggle {
+      order: 1;
+    }
+  }
+  
+  /* Dark Mode Toggle Button Styling */
+/* .head-btn.dark-mode-toggle {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  font-size: 14px;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.head-btn.dark-mode-toggle:hover {
+  background-color: rgba(255, 165, 0, 0.2);
+} */

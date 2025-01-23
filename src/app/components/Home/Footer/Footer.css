@@ -1,0 +1,204 @@
+  .footer {
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+  
+  .footer-top {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    row-gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .footer-brand {
+    text-align: center;
+  }
+  
+  .brand-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .brand-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .cta-button {
+    background-color: var(--color-accent);
+    color: var(--color-background-primary);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--color-accent-hover);
+    transform: scale(1.05);
+  }
+  
+  /* Quick Links */
+  .footer-links {
+    text-align: center;
+  }
+  
+  .footer-links h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .footer-links .link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links .link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-accent);
+    left: 0;
+    bottom: -4px;
+    transition: width 0.3s ease;
+  }
+  
+  .footer-links .link:hover {
+    color: var(--color-accent);
+  }
+  
+  .footer-links .link:hover::after {
+    width: 100%;
+  }
+  
+  /* Social Media Section */
+  .footer-social {
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .social-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .social-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(28, 26, 26);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    background-color: var(--color-accent-hover);
+    transform: scale(1.1);
+  }
+  
+  /* Newsletter Form */
+  .footer-newsletter p {
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .newsletter-form input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--color-text-secondary);
+    border-radius: 5px;
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
+  }
+  
+  .newsletter-form input::placeholder {
+    color: var(--color-text-secondary);
+  }
+  
+  .newsletter-form button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-accent);
+    color: var(--color-background-primary);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .newsletter-form button:hover {
+    background-color: var(--color-accent-hover);
+    transform: scale(1.05);
+  }
+  
+  /* Bottom Section */
+  .footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-top {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+    }
+  }
+  

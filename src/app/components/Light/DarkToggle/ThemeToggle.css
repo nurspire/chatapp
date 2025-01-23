@@ -1,0 +1,231 @@
+/* /styles/globals.css */
+
+:root {
+    --morning-sky: #0066ff;
+    --night-sky: #101010;
+    --transition: all 0.5s ease;
+}
+
+/* Wrapper setup */
+.wrapper {
+    display: grid;
+    font-size: 10px;
+}
+
+/* Hide checkbox input */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Label styles (container) */
+.label-theme {
+    font-size: 4px;
+    position: relative;
+    width: 25em;
+    height: 10em;
+    border-radius: 5em;
+    background-color: var(--morning-sky);
+    box-shadow: inset -0.2em -0.2em 1em #000000;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Dark Mode styles when checkbox is checked */
+.label-theme:has(input:checked) {
+    background-color: var(--night-sky);
+}
+
+/* Astro (Sun/Moon) styles */
+.astro-theme {
+    display: block;
+    position: absolute;
+    width: 8em;
+    height: 8em;
+    top: 1em;
+    left: 1em;
+    background-color: rgb(255, 208, 0); /* Sun color */
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+/* Moon styles (dark mode) */
+.label-theme:has(input:checked) .astro-theme {
+    background-color: darkgray; /* Moon color */
+    left: 65%;
+}
+
+/* Light effect for Sun */
+.light-theme {
+    display: block;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.light-theme:nth-of-type(1) {
+    width: 11em;
+    height: 11em;
+    top: -0.5em;
+    left: -0.5em;
+}
+
+.light-theme:nth-of-type(2) {
+    width: 14em;
+    height: 14em;
+    top: -2em;
+    left: -2em;
+}
+
+.light-theme:nth-of-type(3) {
+    width: 17em;
+    height: 17em;
+    top: -3.5em;
+    left: -3.5em;
+}
+
+/* Add Moon rays in dark mode */
+.label-theme:has(input:checked) .light-theme {
+    background-color: rgba(255, 255, 255, 0.03);
+    width: 5em;
+    height: 5em;
+    top: 0;
+    left: 0;
+}
+
+/* Star styles (night mode) */
+.star-theme {
+    display: block;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    transition: var(--transition);
+    opacity: 0;
+}
+
+.star-theme:nth-of-type(1) {
+    left: 3em;
+    top: 6em;
+}
+
+.star-theme:nth-of-type(2) {
+    left: 10em;
+    top: 8em;
+}
+
+.star-theme:nth-of-type(3) {
+    left: 13em;
+    top: 2em;
+}
+
+.star-theme:nth-of-type(4) {
+    left: 4em;
+    top: 1em;
+}
+
+.star-theme:nth-of-type(5) {
+    left: 8em;
+    top: 4em;
+}
+
+/* Show stars in dark mode */
+.label-theme:has(input:checked) .star-theme {
+    opacity: 1;
+}
+
+/* Cloud styles (light mode) */
+.cloud-theme {
+    position: absolute;
+    display: block;
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 4em;
+    height: 3em;
+    transition: var(--transition);
+}
+
+.cloud-theme:nth-of-type(1) {
+    bottom: 1em;
+    left: 3em;
+}
+
+.cloud-theme:nth-of-type(2) {
+    left: 4em;
+    bottom: 2em;
+    box-shadow: 1em 1em 1em 2em rgba(0, 0, 0, 0.2);
+}
+
+.cloud-theme:nth-of-type(3) {
+    left: 6em;
+    bottom: 1em;
+    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.2);
+}
+
+/* Show clouds in night mode */
+.label-theme:has(input:checked) .cloud-theme {
+    left: 25em;
+}
+
+/* Crater styles (for the moon) */
+.crater-theme {
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: inset -0.2em -0.2em 1em #000000a0;
+    background-color: rgb(94, 94, 94);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.crater-theme:nth-child(1) {
+    width: 2.5em;
+    height: 2.5em;
+    top: 4em;
+    left: 1.5em;
+}
+
+.crater-theme:nth-child(2) {
+    width: 1.5em;
+    height: 1.5em;
+    top: 2em;
+    left: 3.5em;
+}
+
+.crater-theme:nth-child(3) {
+    width: 1.5em;
+    height: 1.5em;
+    top: 5em;
+    left: 4.5em;
+}
+
+/* GitHub Link */
+.githubLink {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 2em;
+    font-family: sans-serif;
+}
+
+/* ThemeToggle.css */
+.wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+input[type="checkbox"]:checked + .label-theme .astro-theme {
+    background-color: #ffbe00; /* Bright yellow for sun */
+}
+
+/* Add your other styles for light/dark themes (sun, clouds, etc.) */

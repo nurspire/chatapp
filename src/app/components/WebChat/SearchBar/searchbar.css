@@ -1,0 +1,64 @@
+.search-bar {
+  display: flex;
+width: 300px;
+/* height: 14vh; */
+border-right: 1px solid var(--color-text-secondary); /* Light gray border for contrast */
+margin: 0 10px;
+margin-bottom: 10px;
+padding: 15px 10px;
+border-radius: 10px;
+background-color: var(--color-background-primary); /* Soft gray-blue background */
+box-shadow: 2px 0px 5px var(--color-shadow-accent); /* Subtle blue shadow */
+}
+
+.input-box {
+border: 1px solid var(--color-text-secondary); /* Light gray border for input box */
+border-radius: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-left: 10px;
+/* margin-top: 20px; */
+margin-left: 20px;
+height: 40px;
+position: relative;
+}
+
+.search-icon {
+position: absolute;
+right: 15px;
+top: 10px;
+font-size: 1.4rem;
+cursor: pointer;
+color: var(--color-accent); /* Darker blue for search icon */
+}
+
+.search-bar input {
+width: 78%;
+font-size: 14px;
+background-color: #2a2a2a00; /* Transparent background for input */
+color: var(--color-text-primary); /* Dark gray-blue text color */
+outline: none;
+border: none;
+}
+
+.search-bar input::placeholder {
+color: var(--color-text-secondary); /* Lighter gray for placeholder text */
+}
+
+/* Media Query for screens less than 769px */
+@media (max-width: 768px) {
+.search-bar {
+  margin-top: 10px;
+  border-radius: 10px;
+  justify-content: space-between;
+  width: calc(100vw - 110px); /* Full width minus 80px from left */
+  margin-left: 80px; /* 80px from the left */
+  border-right: none; /* Remove the right border */
+}
+
+.input-box {
+  margin-top: 12px;
+  margin-left: 0; /* Remove the left margin */
+}
+}

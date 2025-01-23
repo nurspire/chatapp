@@ -1,0 +1,91 @@
+.call-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.call-interface {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.user-avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.call-status, .call-duration {
+  font-size: 16px;
+  color: #666;
+}
+
+.call-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.control-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-button.muted {
+  background-color: #f44336;
+  color: white;
+}
+
+.control-button.end-call {
+  background-color: #f44336;
+  color: white;
+}
+
+.control-button.accept-call {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.control-button.reject-call {
+  background-color: #f44336;
+  color: white;
+}

@@ -1,0 +1,89 @@
+.testimonials {
+  padding: 4rem 2rem;
+  background-color: var(--color-background-primary); /* Set background color */
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background-color: var(--color-card-background); /* Use card background color */
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0px 8px var(--color-shadow-accent); /* Add shadow with accent color */
+  border: 1px solid var(--color-border); /* Light gray border for cards */
+}
+
+.testimonial-content {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-content p {
+  font-style: italic;
+  color: var(--color-text-secondary); /* Secondary text color */
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonial-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent); /* Accent color for avatar border */
+}
+
+.testimonial-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  color: var(--color-text-primary); /* Primary text color for name */
+}
+
+.testimonial-role {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary); /* Secondary text color for role */
+}
+
+.testimonial-card:hover {
+  cursor: pointer;
+  background-color: #2c2c2ca8; /* Slightly darker background on hover */
+  box-shadow: 0 6px 10px var(--color-shadow-accent); /* Enhanced shadow on hover */
+}
+
+.testimonial-button {
+  background-color: var(--color-button-background); /* Button background color */
+  color: var(--color-button-text); /* Button text color */
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.testimonial-button:hover {
+  background-color: var(--color-hover-accent); /* Darker accent on hover */
+  color: var(--color-text-primary); /* Button text changes on hover */
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    padding: 3rem 1rem;
+  }
+
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,260 @@
+/* USER SIDEBAR */
+.user-sidebar {
+  width: 300px; /* Fixed width for the user sidebar */
+  height: calc(100vh - 10.7rem);
+  margin-left: 10px;
+  border-radius: 15px;
+  background-color: var(--color-background-primary); /* Soft gray-blue for the sidebar background */
+  border: 1px solid var(--color-border-primary); /* Subtle border for definition */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  overflow: hidden; /* Prevents elements from overflowing the sidebar */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; Takes full height of the viewport */
+  background-color: #f0f2f5; /* Optional: background to give it a nice contrast */
+}
+
+.user-sidebar:hover {
+  /* transform: scale(1.02); Slight zoom on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* SEARCH BAR */
+.user-sidebar input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  border: 1px solid var(--color-border-primary);
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+  font-size: 16px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); /* Inner shadow for depth */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.user-sidebar input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Glowing effect on focus */
+}
+
+/* USER LIST */
+.user-list {
+  flex: 1;
+  overflow-y: auto; /* Scrollable list */
+  margin-top: 10px;
+  padding-right: 10px; /* Adds padding to the right for better scroll appearance */
+  scrollbar-width: thin; /* Thin scrollbar for a modern look */
+  scrollbar-color: var(--color-accent) transparent;
+}
+
+.user-list::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.user-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border-radius: 10px;
+}
+
+/* USER ITEM */
+.user-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: var(--color-background-secondary); /* Subtle background for each item */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
+}
+
+.user-item:hover {
+  background-color: var(--color-accent); /* Highlight color on hover */
+  /* transform: translateX(5px); Slightly shift the item to the right on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+}
+
+.user-item span {
+  font-size: 16px;
+  font-weight: 500; /* Bold text for better emphasis */
+  color: var(--color-text-primary); /* Dark grayish-blue text color for better readability */
+  margin-left: 15px;
+  flex-grow: 1; /* Push the menu icon to the right */
+  text-overflow: ellipsis; /* Truncate long text */
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* USER ICON */
+.user-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%; /* Makes the profile picture circular */
+  object-fit: cover; /* Ensures the image fits within the circular frame */
+  border: 2px solid var(--color-border-primary); /* Border around the profile image */
+  background-color: var(--color-background-secondary); /* Default background color for profile icon */
+}
+
+/* MENU WRAPPER */
+.menu-wrapper {
+  position: relative;
+  margin-left: auto; /* Push menu icon to the right */
+}
+
+.menu-icon {
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: color 0.3s;
+}
+
+.menu-icon:hover {
+  color: var(--color-text-primary);
+}
+
+/* MENU DROPDOWN */
+.menu-dropdown {
+  position: absolute;
+  top: 40px; /* Slightly below the ellipsis icon */
+  right: 0;
+  background-color: var(--color-background-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  z-index: 100;
+  width: 180px;
+  padding: 8px 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu-item:hover {
+  background-color: var(--color-accent);
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.menu-icon-left {
+  margin-right: 10px;
+  color: var(--color-text-primary);
+  font-size: 18px;
+}
+
+/* MEDIA QUERY FOR SMALL SCREENS */
+@media (max-width: 768px) {
+  .user-sidebar {
+    width: calc(100vw - 50px);
+    margin-left: 15px;
+  }
+
+  .user-item {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .user-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .user-item span {
+    font-size: 14px;
+  }
+}
+/* MENU DROPDOWN */
+.menu-dropdown {
+  position: absolute;
+  top: 40px; /* Slightly below the ellipsis icon */
+  right: 0;
+  background-color: var(--color-background-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.507); /* Soft shadow for depth */
+  z-index: 100;
+  width: 180px;
+  padding: 8px 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: slideDown 0.3s ease forwards;
+  z-index:1;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu-item:hover {
+  background-color: var(--color-accent);
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.menu-icon-left {
+  margin-right: 10px;
+  color: var(--color-text-primary);
+  font-size: 18px;
+}
+/* USER ITEM */
+.user-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.user-link:hover {
+  background-color: #f0f0f0; /* Optional hover effect */
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.refresh-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.refresh-icon {
+  color: var(--color-border-primary);
+  transition: transform 0.3s ease-in-out;
+}
+
+.refresh-icon:hover {
+  transform: rotate(90deg);
+}

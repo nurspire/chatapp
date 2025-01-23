@@ -1,0 +1,88 @@
+/* CALL SIDEBAR */
+.user-sidebar {
+    width: 300px; /* Fixed width for the call sidebar */
+    height: calc(100vh - 10.9rem);
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: var(--color-background-primary); /* Soft gray-blue for the sidebar background */
+    border-right: 1px solid var(--color-text-secondary); /* Light gray border for contrast */
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 2px 0px 5px var(--color-shadow-accent); /* Subtle dark blue shadow */
+  }
+  
+  /* CALL LOG LIST */
+  .user-list {
+    flex: 1;
+    overflow-y: auto; /* Scrollable list */
+    margin-top: 10px;
+  }
+  
+  /* CALL LOG ITEM */
+  .user-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    justify-content: space-between;
+  }
+  
+  .user-item:hover {
+    background-color: var(--color-accent); /* Darker blue for hover interaction */
+  }
+  
+  /* CALL ICON */
+  .call-icon {
+    margin-right: 10px;
+    color: var(--color-button-background); /* Dark blue icon color to match the button */
+  }
+  
+  /* CALL DETAILS */
+  .call-details {
+    flex-grow: 1;
+  }
+  
+  .call-name {
+    font-size: 14px;
+    color: var(--color-text-primary); /* Dark grayish-blue text color for better readability */
+  }
+  
+  .call-time {
+    font-size: 12px;
+    color: var(--color-text-secondary); /* Lighter gray for time */
+  }
+  
+  /* CALL STATUS */
+  .call-status {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+  
+  .status-answered {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .status-missed {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* CALL DURATION */
+  .call-duration {
+    margin-left: 10px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+  }
+  
+  @media (max-width: 768px) {
+    .user-sidebar {
+      width: calc(100vw - 50px);
+      margin-left: 15px;
+    }
+  }
+  

@@ -1,0 +1,73 @@
+
+  /* ========================================== */
+/* GENERAL RESET */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* LANDING PAGE */
+.landing-page {
+  display: flex;
+  flex: 1;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - 5rem);
+  background-color: var(--color-background-primary);/* Semi-transparent white */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  width: calc(100vw - 400px);
+}
+
+/* CENTERED CONTENT */
+.center-content {
+  text-align: center;
+  padding: 40px;
+  border-radius: 16px;
+}
+
+/* LOGO */
+.transparent-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 20%;
+  margin-bottom: 20px;
+  opacity: 0.7; /* Adjust opacity to make it look more faded */
+  filter: brightness(0.8); /* Slightly dim the image */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+
+
+/* TITLE */
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333333;
+  margin: 0;
+}
+
+/* SUBTITLE */
+.subtitle {
+  font-size: 16px;
+  color: #666666;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+  .center-content {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+}

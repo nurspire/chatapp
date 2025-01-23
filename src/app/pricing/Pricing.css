@@ -1,0 +1,179 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #2d2d2d, #141414);
+    color: var(--color-text-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    background-color: var(--color-background-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.pricing-heading {
+    font-size: 3rem; /* Adjusted for a professional look */
+    margin-bottom: 20px;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    animation: slideInFromTop 1s ease-out;
+}
+
+.pricing-description {
+    font-size: 1rem; /* Reduced for a cleaner, professional feel */
+    color: var(--color-text-secondary);
+    margin-bottom: 50px;
+    animation: slideInFromTop 1s ease-out;
+    animation-delay: 0.2s;
+}
+
+.pricing-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    animation: slideInFromLeft 1s ease-out;
+    animation-delay: 0.4s;
+}
+
+.pricing-card {
+    background-color: var(--color-background-primary); /* Updated to match background secondary color */
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    backdrop-filter: blur(10px); /* Apply background blur */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); /* Stronger shadow behind card */
+}
+
+.pricing-card:hover {
+    background-color: rgba(215, 140, 0, 0.352); /* Slightly adjusted color for hover */
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+.plan-header {
+    background-color: var(--color-accent); /* Accent color for header */
+    width: 100%;
+    padding: 10px 0; /* Reduced padding for a more compact look */
+    border-radius: 10px 10px 0 0;
+    font-size: 1.3rem; /* Slightly smaller font size */
+    font-weight: bold;
+    color: var(--color-button-text); /* White text for contrast */
+    text-transform: uppercase;
+}
+
+.plan-price {
+    font-size: 1.8rem; /* Reduced price text for a more professional style */
+    font-weight: bold;
+    color: var(--color-accent); /* Accent color for price */
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.plan-features li {
+    font-size: 0.9rem; /* Reduced feature text size */
+    color: var(--color-text-secondary); /* Secondary text color for features */
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-text-secondary); /* Border in secondary text color */
+}
+
+.plan-button {
+    margin-top: auto;
+    background-color: var(--color-button-background); /* Button background color */
+    color: var(--color-button-text); /* White text for buttons */
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem; /* Slightly smaller for a more balanced look */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.plan-button:hover {
+    background-color: var(--color-hover-accent); /* Hover color for button */
+    transform: scale(1.1);
+}
+
+.pricing-footer {
+    margin-top: 50px;
+    font-size: 1rem;
+    color: var(--color-text-secondary); /* Secondary text color */
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+    animation-delay: 0.6s;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pricing-card {
+        width: 90%;
+    }
+
+    .plan-header {
+        font-size: 1.1rem; /* Make the header font smaller on small screens */
+    }
+
+    .plan-price {
+        font-size: 1.5rem; /* Adjust price font size on small screens */
+    }
+
+    .plan-features li {
+        font-size: 0.85rem; /* Further reduce feature text size */
+    }
+}
+

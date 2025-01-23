@@ -1,0 +1,384 @@
+  
+  .navbar {
+    background-color: var(--color-background-primary);
+    box-shadow: 0 2px 4px var(--color-shadow-accent);
+  }
+  
+  .navbar-container {
+      width:calc(100vw - 80px);
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+  }
+  
+  .app-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--color-text-primary);
+  }
+  
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    color: var(--color-accent);
+  }
+  
+  .icon-button:hover {
+    background-color: var(--color-hover-accent);
+  }
+  
+  .search-container {
+    position: relative;
+  }
+  
+  .search-input {
+    width: 250px;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-text-secondary);
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
+  }
+  
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-background-primary);
+    border: 1px solid var(--color-text-secondary);
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px var(--color-shadow-accent);
+    z-index: 10;
+  }
+  
+  .search-result-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s;
+    color: var(--color-text-primary);
+  }
+  
+  .search-result-item:hover {
+    background-color: var(--color-hover-accent);
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .add-button {
+    background-color: var(--color-button-background);
+    color: var(--color-button-text);
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .add-button:hover {
+    background-color: var(--color-hover-accent);
+  }
+  
+  .pending-requests {
+    position: relative;
+  }
+  
+  .pending-requests-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 250px;
+    background-color: var(--color-background-primary);
+    border: 1px solid var(--color-text-secondary);
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px var(--color-shadow-accent);
+    z-index: 10;
+  }
+  
+  .pending-request-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s;
+    color: var(--color-text-primary);
+  }
+  
+  .pending-request-item:hover {
+    background-color: rgb(31, 31, 31);
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .accept-button,
+  .reject-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+  
+  .accept-button {
+    color: var(--color-accent);
+  }
+  
+  .accept-button:hover {
+    background-color: var(--color-shadow-accent);
+  }
+  
+  .reject-button {
+    color: var(--color-hover-accent);
+  }
+  
+  .reject-button:hover {
+    background-color: rgba(198, 131, 5, 0.1);
+  }
+  
+  .message {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: var(--color-accent);
+    color: var(--color-button-text);
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 2px 4px var(--color-shadow-accent);
+  }
+  
+  /* ========================= */
+  .sent-button {
+    background-color: #ddd;
+    color: #666;
+    cursor: not-allowed;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  /* FilterSec.css */
+
+/* Ensure consistent avatar size */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover; /* Ensures the image scales correctly without distortion */
+  border: 1px solid #ccc; /* Optional: Add a border for better visuals */
+}
+
+
+/* =========================== */
+/* Pending Request Counter */
+.pending-counter {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Icon Button */
+.icon-button {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background-color: transparent;
+  border-radius: 50%;
+  transform: scale(1.3);
+}
+
+/* Pending Requests Dropdown */
+.pending-requests-dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  width: 300px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.pending-request-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.pending-request-item:last-child {
+  border-bottom: none;
+}
+
+/* Action buttons inside pending request items */
+.accept-button,
+.reject-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.accept-button {
+  color: green;
+}
+
+.reject-button {
+  color: red;
+}
+
+.accept-button:hover,
+.reject-button:hover {
+  opacity: 0.7;
+}
+
+/* Navbar styles */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Beautifying the Pending Requests Counter */
+.pending-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff4c4c; /* Red background */
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 3px 7px;
+  min-width: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 1000;
+}
+/* Refresh Button Styles */
+.refresh-button {
+  background-color: #2f3b47; /* Dark blue-gray background */
+  border: 2px solid #3d4a57;  /* Light border for definition */
+  color: #fff;  /* White icon color */
+  cursor: pointer;
+  padding: 14px;
+  border-radius: 50%;  /* Circular button */
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+  width: 50px;
+  height: 50px;
+}
+
+/* Hover Effects */
+.refresh-button:hover {
+  background-color: #4e5d6a;  /* Slightly lighter color on hover */
+  transform: scale(1.05);  /* Subtle scaling on hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);  /* Stronger shadow on hover */
+}
+
+/* Active State */
+.refresh-button:active {
+  transform: scale(1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Slightly reduced shadow when clicked */
+}
+
+/* Icon Style */
+.refresh-button .refresh-icon {
+  font-size: 30px;  /* Larger icon */
+  color: #fff;  /* White icon color */
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;  /* Smooth transitions */
+}
+
+/* Spinning Animation when refreshing */
+.refresh-button.spinning .refresh-icon {
+  animation: spin 1s linear infinite;
+}
+
+/* Spin keyframes */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hover rotation effect for the icon */
+.refresh-button:hover .refresh-icon {
+  transform: rotate(45deg);  /* Gentle icon rotation on hover */
+  color: #5c8d94;  /* Light accent color on hover */
+}
+

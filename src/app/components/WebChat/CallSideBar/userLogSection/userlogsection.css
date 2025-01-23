@@ -1,0 +1,126 @@
+
+  /* USER CALL LOG SECTION */
+  .user-call-log-section {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-background-primary); /* Primary background color */
+    border-radius: 10px;
+    width: 66vw;
+    height: calc(100vh - 5rem);
+  }
+  
+  .log-top-bar {
+    padding: 10px 20px;
+    background-color: var(--color-background-primary);
+    border-bottom: 1px solid var(--color-border); /* Lighter border for the bottom */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--color-text-primary); /* Primary text color */
+  }
+  
+  /* CALL LOG DISPLAY */
+  .call-log-display {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .call-log-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-primary);
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .call-log-item:hover {
+    background-color: var(--color-accent); /* Accent color on hover */
+  }
+  
+  /* CALL INFO */
+  .call-info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .call-time, .call-duration {
+    font-size: 12px;
+    color: var(--color-text-secondary); /* Lighter text for time and duration */
+  }
+  
+  .call-status {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .call-status.answered {
+    color: green;
+  }
+  
+  .call-status.missed {
+    color: red;
+  }
+  
+  .call-status.declined {
+    color: orange;
+  }
+  
+  /* CALL TYPE ICON */
+  .call-type {
+    display: flex;
+    align-items: center;
+  }
+  
+  .call-icon {
+    color: var(--color-text-primary); /* Lighter text color for call type icon */
+    cursor: pointer;
+  }
+  
+  /* SIDEBAR STYLES (Already exists in your sidebar) */
+  .user-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--color-background-secondary); /* Background color for each user item */
+    color: var(--color-text-primary);
+    transition: background-color 0.3s;
+  }
+  
+  .user-item:hover {
+    background-color: var(--color-accent); /* Accent color on hover */
+  }
+  
+  .user-avatar {
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* RESPONSIVE DESIGN */
+  @media screen and (max-width: 769px) {
+    .user-call-log-section {
+      width: 100vw;
+      height: 100vh;
+    }
+  }
+  

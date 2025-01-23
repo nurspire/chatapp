@@ -1,0 +1,181 @@
+
+
+/* SIDEBAR */
+.chatsidebar {
+  width: 80px;
+  height: calc(100vh);
+  /* background: linear-gradient(180deg, #1e1e1e, #151515); */
+  border-right: 1px solid #333;
+  display: flex;
+  background-color: var(--color-background-primary);
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  transition: width 0.3s ease, opacity 0.3s ease-in-out;
+  padding-top: 30px; /* Ensure the sidebar starts below the header */
+}
+
+.chatsidebar.expanded {
+  width: 260px;
+}
+
+@keyframes slideIn {
+  0% {
+    width: 80px;
+  }
+  100% {
+    width: 260px;
+  }
+}
+
+.chatsidebar-logo {
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.chatsidebar-logo img {
+  border-radius: 50%;
+}
+
+.chatsidebar-menu-items {
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chatsidebar-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 20px;
+  cursor: pointer;
+  color: var(--color-text-primary); /* Using color variable */
+  transition: background-color 0.3s, color 0.3s;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.chatsidebar-menu-item:hover {
+  background-color:var(--color-text-secondary);
+  color: var(--color-accent); /* Using color variable */
+}
+
+.chatsidebar-menu-item span {
+  margin-left: 15px;
+  display: none;
+}
+
+.chatsidebar.expanded .chatsidebar-menu-item span {
+  display: inline-block;
+}
+
+/* CLOSE BUTTON (X) */
+.chatsidebar-close-button {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--color-accent); /* Using color variable */
+  transition: background-color 0.3s;
+}
+
+.chatsidebar-close-button:hover {
+  background-color: var(--color-hover-accent); /* Using color variable */
+}
+
+/* MENU ICON FOR RESPONSIVE */
+.chatsidebar-menu-icon {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: var(--color-accent); /* Using color variable */
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.chatsidebar-menu-icon:hover {
+  background-color: var(--color-hover-accent); /* Using color variable */
+  transform: scale(1.1);
+}
+
+/* PROFILE ICON AT BOTTOM */
+.chatsidebar-profile {
+  width: auto;
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  color: var(--color-text-primary); /* Using color variable */
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.chatsidebar-profile img{
+  border-radius: 50%;
+}
+
+.chatsidebar-profile:hover {
+  background-color: #333;
+  color: var(--color-accent); /* Using color variable */
+}
+
+.chatsidebar-profile span {
+  margin-left: 15px;
+  display: none;
+}
+
+.chatsidebar.expanded .chatsidebar-profile span {
+  display: inline-block;
+}
+
+.chatsidebar-menu-icon {
+  display: none;
+}
+
+/* RESPONSIVENESS */
+@media screen and (max-width: 768px) {
+  .chatsidebar {
+    display: none; /* Hide sidebar on mobile */
+  }
+  
+  .chatsidebar.expanded {
+    display: flex;
+  }
+
+  .chatsidebar-menu-icon {
+    display: block; /* Show menu icon on mobile */
+  }
+
+  .chatsidebar.expanded .chatsidebar-menu-item span,
+  .chatsidebar.expanded .chatsidebar-profile span {
+    display: inline-block;
+  }
+
+  .chatsidebar:not(.expanded) .chatsidebar-menu-items,
+  .chatsidebar:not(.expanded) .chatsidebar-profile {
+    display: none;
+  }
+
+  /* Adjust menu icon position for mobile */
+  .chatsidebar-menu-icon {
+    top: 100px; /* Position the menu icon near the top */
+    left: 15px;
+  }
+}
+/* ========================= */

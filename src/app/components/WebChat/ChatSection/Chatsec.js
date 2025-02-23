@@ -102,8 +102,12 @@ export default function ChatSection() {
       setError("No token provided");
     }
 
-    socket = io("http://localhost:3000");
-    setSocketReady(true);
+    // socket = io("http://localhost:3000");
+    // setSocketReady(true);
+
+  socket = io(process.env.BASE_URL);
+  setSocketReady(true);
+
 
     socket.on("incoming call", ({ caller, callType }) => {
       setIncomingCall({ caller, callType });

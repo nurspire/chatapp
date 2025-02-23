@@ -71,3 +71,8 @@ body, html {
     font-size: 14px;
   }
 }
+@media screen and (max-width:769px) {
+  .landing-page{
+    display: none;
+  } 
+}

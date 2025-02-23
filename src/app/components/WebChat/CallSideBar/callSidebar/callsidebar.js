@@ -53,121 +53,221 @@
 // }
 
 "use client";
-import { FaPhoneAlt, FaVideo, FaPhoneSlash } from "react-icons/fa";
-import { useState, useEffect } from "react";
-import io from "socket.io-client";
-import { useRouter } from "next/navigation";
 
+import React, { useState, useEffect, useRef } from "react";
+import {
+  FaPhoneAlt,
+  FaPhoneSlash,
+  FaRegClock,
+  FaEllipsisV,
+  FaTrash,
+  FaFolder,
+  FaUsers,
+} from "react-icons/fa";
+import jwt from "jsonwebtoken";
+import { useRouter } from "next/navigation"; // For navigation
 import "./callbar.css";
 
-let socket;
-
-export default function CallSidebar({ userId }) {
+export default function CallSidebar() {
   const [callLogs, setCallLogs] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [chatUsers, setChatUsers] = useState([]);
+  const [currentUserId, setCurrentUserId] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const dropdownRef = useRef(null);
   const router = useRouter();
 
   useEffect(() => {
-    console.log("Initializing socket connection...");
-    socket = io("http://localhost:3000");
+    const fetchData = async () => {
+      try {
+        const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+        if (token) {
+          const decodedToken = jwt.decode(token);
+          if (decodedToken) {
+            setCurrentUserId(decodedToken.id);
+          }
+        }
 
-    // Fetch call logs
-    console.log("Emitting get call logs with userId:", userId);
-    socket.emit("get call logs", userId);
+        const callResponse = await fetch("/api/call");
+        const callData = await callResponse.json();
+        setCallLogs(callData.callLogs);
 
-    socket.on("call logs", (logs) => {
-      console.log("Received call logs:", logs);
-      setCallLogs(logs);
-    });
-
-    // Fetch user details from API
-    console.log("Fetching user data from /api/chat_user/getallusers...");
-    fetch("/api/chat_user/getallusers")
-      .then((response) => {
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        console.log("User data fetch successful, parsing JSON...");
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Fetched user data:", data);
-        setUsers(data);
-      })
-      .catch((error) => console.error("Error fetching users:", error));
-
-    // Cleanup socket
-    return () => {
-      console.log("Disconnecting socket...");
-      socket.off("call logs");
-      socket.disconnect();
+        const userResponse = await fetch("/api/chat_user/getallusers");
+        const userData = await userResponse.json();
+        setChatUsers(userData.users);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
-  }, [userId]);
 
-  const formatDuration = (seconds) => {
-    if (!seconds) return "N/A";
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const getChatUser = (userId) => {
+    return chatUsers.find((u) => u.user_id === userId);
   };
 
-  const formatTime = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const formatDuration = (startTime, endTime) => {
+    const start = new Date(startTime);
+    const end = new Date(endTime);
+    const durationMs = end.getTime() - start.getTime();
+    const minutes = Math.floor(durationMs / 60000);
+    const seconds = Math.floor((durationMs % 60000) / 1000);
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  const getUserDetails = (userId) => {
-    console.log("Looking for user with userId:", userId);
-    const user = users.find((user) => user.user_id === userId);
-    console.log("User found:", user);
-    return user || {};
+  const formatTime = (time) => {
+    return new Date(time).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
   };
 
-  if (callLogs.length === 0) {
-    console.log("No call logs available for userId:", userId);
-  }
+  const toggleDropdown = (callId) => {
+    setActiveDropdown(activeDropdown === callId ? null : callId);
+  };
+
+  const handleDelete = async (callId) => {
+    try {
+      // Make an API request to delete the specific call log
+      const response = await fetch("/api/call", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: callId }),
+      });
+  
+      if (response.ok) {
+        console.log(`Call log ${callId} deleted successfully`);
+        // Update the local state to remove the deleted log
+        setCallLogs((prevLogs) => prevLogs.filter((call) => call._id !== callId));
+      } else {
+        console.error("Failed to delete call log");
+      }
+    } catch (error) {
+      console.error("Error deleting call log:", error);
+    }
+  
+    // Close the dropdown menu
+    setActiveDropdown(null);
+  };
+  
+  const handleClearUsers = async () => {
+    try {
+      // Make an API request to delete all call logs
+      const response = await fetch("/api/call", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}), // Send an empty object for deleting all
+      });
+  
+      if (response.ok) {
+        console.log("All call logs deleted successfully");
+        // Clear call logs from the local state
+        setCallLogs([]);
+      } else {
+        console.error("Failed to delete call logs");
+      }
+    } catch (error) {
+      console.error("Error deleting call logs:", error);
+    }
+  };
+  
+  
+
+  const handleOpen = (callId) => {
+    console.log("Open call details:", callId);
+    setActiveDropdown(null);
+  };
+
+  const handleNavigateToCall = (callId) => {
+    router.push(`/app/calls/${callId}`);
+  };
+  
+
+  const filteredCallLogs = callLogs.filter(
+    (log) => log.caller === currentUserId || log.receiver === currentUserId
+  );
 
   return (
-    <div className="user-sidebar">
-      <div className="user-list">
-        {callLogs.map((call) => {
-          const isCaller = call.caller === userId;
-          const otherUserId = isCaller ? call.receiver : call.caller;
-          const otherUser = getUserDetails(otherUserId);
-
-          console.log("Rendering call log item:", call);
-          console.log("Other user details:", otherUser);
+    <div className="call-sidebar">
+      <h2 className="sidebar-title">Call History</h2>
+      <div className="actions-bar">
+        <button onClick={handleClearUsers} className="clear-users-button">
+          <FaUsers size={16} /> Clear Users
+        </button>
+      </div>
+      <div className="call-list">
+        {filteredCallLogs.map((call) => {
+          const isOutgoing = call.caller === currentUserId;
+          const otherPartyId = isOutgoing ? call.receiver : call.caller;
+          const otherParty = getChatUser(otherPartyId);
 
           return (
             <div
-              key={call._id}
-              className="user-item"
-              onClick={() => {
-                console.log("Navigating to /call/", otherUserId);
-                router.push(`/call/${otherUserId}`);
-              }}
-            >
-              {/* Icon based on call type */}
-              {call.status === "answered" ? (
-                call.callType === "audio" ? (
-                  <FaPhoneAlt size={24} className="call-icon" />
+            key={call._id}
+            className="call-item"
+            onClick={() => handleNavigateToCall(call._id)}
+          >
+          
+              <div className="call-info">
+                {otherParty && otherParty.picture ? (
+                  <img
+                    src={otherParty.picture || "/placeholder.svg"}
+                    alt={otherParty.user_name}
+                    className="user-avatar"
+                  />
                 ) : (
-                  <FaVideo size={24} className="call-icon" />
-                )
-              ) : (
-                <FaPhoneSlash size={24} className="call-icon" />
-              )}
-
-              <div className="call-details">
-                <img
-                  src={otherUser.picture || "https://via.placeholder.com/40"}
-                  alt="User Avatar"
-                  className="user-avatar"
-                />
-                <span className="call-name">{otherUser.user_name || "Unknown User"}</span>
-                <span className="call-time">{formatTime(call.startTime)}</span>
+                  <div className="default-avatar">
+                    {isOutgoing ? (
+                      <FaPhoneSlash size={20} />
+                    ) : (
+                      <FaPhoneAlt size={20} />
+                    )}
+                  </div>
+                )}
+                <div className="call-details">
+                  <div className="call-name">{otherParty ? otherParty.user_name : "Unknown User"}</div>
+                  <div className="call-time">{formatTime(call.startTime)}</div>
+                </div>
               </div>
-
-              <div className="call-duration">
-                <span>{formatDuration(call.duration)}</span>
+              <div className="call-actions">
+                <div className="call-duration">
+                  <FaRegClock size={12} className="clock-icon" />
+                  {formatDuration(call.startTime, call.endTime)}
+                </div>
+                <div className="dropdown-wrapper">
+                  <FaEllipsisV
+                    size={16}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleDropdown(call._id);
+                    }}
+                    className="dropdown-icon"
+                  />
+                  {activeDropdown === call._id && (
+                    <div ref={dropdownRef} className="dropdown-menu slide-in">
+                      <div onClick={() => handleDelete(call._id)} className="dropdown-item">
+                        <FaTrash size={14} className="dropdown-icon" /> Delete
+                      </div>
+                      <div onClick={() => handleOpen(call._id)} className="dropdown-item">
+                        <FaFolder size={14} className="dropdown-icon" /> Open
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           );

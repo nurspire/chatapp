@@ -1,88 +1,239 @@
-/* CALL SIDEBAR */
-.user-sidebar {
-    width: 300px; /* Fixed width for the call sidebar */
-    height: calc(100vh - 10.9rem);
-    margin-left: 10px;
-    border-radius: 10px;
-    background-color: var(--color-background-primary); /* Soft gray-blue for the sidebar background */
-    border-right: 1px solid var(--color-text-secondary); /* Light gray border for contrast */
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    box-shadow: 2px 0px 5px var(--color-shadow-accent); /* Subtle dark blue shadow */
-  }
-  
-  /* CALL LOG LIST */
-  .user-list {
-    flex: 1;
-    overflow-y: auto; /* Scrollable list */
-    margin-top: 10px;
-  }
-  
-  /* CALL LOG ITEM */
-  .user-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    justify-content: space-between;
-  }
-  
-  .user-item:hover {
-    background-color: var(--color-accent); /* Darker blue for hover interaction */
-  }
-  
-  /* CALL ICON */
-  .call-icon {
-    margin-right: 10px;
-    color: var(--color-button-background); /* Dark blue icon color to match the button */
-  }
-  
-  /* CALL DETAILS */
-  .call-details {
-    flex-grow: 1;
-  }
-  
-  .call-name {
-    font-size: 14px;
-    color: var(--color-text-primary); /* Dark grayish-blue text color for better readability */
-  }
-  
-  .call-time {
-    font-size: 12px;
-    color: var(--color-text-secondary); /* Lighter gray for time */
-  }
-  
-  /* CALL STATUS */
-  .call-status {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-  }
-  
-  .status-answered {
-    color: green;
-    font-weight: bold;
-  }
-  
-  .status-missed {
-    color: red;
-    font-weight: bold;
-  }
-  
-  /* CALL DURATION */
-  .call-duration {
-    margin-left: 10px;
-    font-size: 12px;
-    color: var(--color-text-secondary);
-  }
-  
-  @media (max-width: 768px) {
-    .user-sidebar {
-      width: calc(100vw - 50px);
-      margin-left: 15px;
-    }
-  }
-  
+/* callSidebar.css */
+
+.call-sidebar {
+  width: 300px;
+  height: calc(100vh - 9.9rem);
+  margin-left: 10px;
+  border-radius: 15px;
+  background-color: var(--color-background-primary);
+  border-right: 1px solid var(--color-text-secondary);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0px 5px var(--color-shadow-accent);
+}
+
+.sidebar-title {
+  margin: 0 0 10px 0;
+  color: var(--color-text-primary);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.call-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.call-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  background-color: var(--color-background-secondary);
+}
+
+.call-item:hover {
+  background-color: var(--color-background-hover);
+}
+
+.call-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.default-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  color: var(--color-button-text);
+}
+
+.call-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.call-name {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  font-weight: bold;
+}
+
+.call-time {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.call-actions {
+  display: flex;
+  align-items: center;
+}
+
+.call-duration {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.clock-icon {
+  margin-right: 5px;
+}
+
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-icon {
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: var(--color-background-primary);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-primary);
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: var(--color-background-hover);
+}
+
+.dropdown-item .dropdown-icon {
+  margin-right: 8px;
+}
+.actions-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.clear-users-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.3s ease-in-out;
+}
+
+.clear-users-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.call-sidebar {
+  width: 300px;
+  height: calc(100vh - 9.9rem);
+  margin-left: 10px;
+  border-radius: 10px;
+  background-color: var(--color-background-primary);
+  border-right: 1px solid var(--color-text-secondary);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 2px 0px 5px var(--color-shadow-accent);
+}
+
+.sidebar-title {
+  margin: 0 0 15px 0;
+  color: var(--color-text-primary);
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media screen and (max-width:768px) {
+  .call-sidebar{
+    width: calc(100vw - 42px);
+    margin-left: 15px;
+    height: calc(100vh - 11rem);
+  } 
+}
+/* callbar.css */
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.dropdown-menu.slide-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f4f4f4;
+}
+
+.dropdown-icon {
+  margin-right: 5px;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-icon {
+  cursor: pointer;
+}

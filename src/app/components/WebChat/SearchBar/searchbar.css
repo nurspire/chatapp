@@ -5,7 +5,7 @@ width: 300px;
 border-right: 1px solid var(--color-text-secondary); /* Light gray border for contrast */
 margin: 0 10px;
 margin-bottom: 10px;
-padding: 15px 10px;
+padding: 10px 10px;
 border-radius: 10px;
 background-color: var(--color-background-primary); /* Soft gray-blue background */
 box-shadow: 2px 0px 5px var(--color-shadow-accent); /* Subtle blue shadow */
@@ -58,7 +58,7 @@ color: var(--color-text-secondary); /* Lighter gray for placeholder text */
 }
 
 .input-box {
-  margin-top: 12px;
+  /* margin-top: 12px; */
   margin-left: 0; /* Remove the left margin */
 }
 }

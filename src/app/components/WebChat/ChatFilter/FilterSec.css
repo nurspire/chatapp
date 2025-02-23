@@ -382,3 +382,21 @@
   color: #5c8d94;  /* Light accent color on hover */
 }
 
+
+@media screen and (max-width:769px) {
+  .navbar-container {
+    width: 97.4vw;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    position: sticky;
+}
+.themetoggle{
+  display: none;
+}
+}

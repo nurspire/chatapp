@@ -1,25 +1,28 @@
-
+/* ========================= SIDEBAR STYLES ========================= */
 
 /* SIDEBAR */
 .chatsidebar {
   width: 80px;
-  height: calc(100vh);
-  /* background: linear-gradient(180deg, #1e1e1e, #151515); */
+  height: 100vh;
+  background-color: var(--color-background-primary);
   border-right: 1px solid #333;
   display: flex;
-  background-color: var(--color-background-primary);
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
   border-top-right-radius: 0;
-  transition: width 0.3s ease, opacity 0.3s ease-in-out;
-  padding-top: 30px; /* Ensure the sidebar starts below the header */
+  transition: width 0.3s ease, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  padding-top: 30px;
+  position: relative;  /* Updated here to make it behave normally when width > 768px */
+  z-index: 1;
 }
 
+/* Sidebar expanded */
 .chatsidebar.expanded {
   width: 260px;
 }
 
+/* KEYFRAME: Slide In Effect */
 @keyframes slideIn {
   0% {
     width: 80px;
@@ -29,6 +32,7 @@
   }
 }
 
+/* SIDEBAR CONTENT */
 .chatsidebar-logo {
   margin-bottom: 30px;
   cursor: pointer;
@@ -52,7 +56,7 @@
   justify-content: flex-start;
   padding: 12px 20px;
   cursor: pointer;
-  color: var(--color-text-primary); /* Using color variable */
+  color: var(--color-text-primary);
   transition: background-color 0.3s, color 0.3s;
   width: 100%;
   font-size: 16px;
@@ -60,8 +64,8 @@
 }
 
 .chatsidebar-menu-item:hover {
-  background-color:var(--color-text-secondary);
-  color: var(--color-accent); /* Using color variable */
+  background-color: var(--color-text-secondary);
+  color: var(--color-accent);
 }
 
 .chatsidebar-menu-item span {
@@ -82,12 +86,12 @@
   border-radius: 50%;
   cursor: pointer;
   color: #fff;
-  background-color: var(--color-accent); /* Using color variable */
+  background-color: var(--color-accent);
   transition: background-color 0.3s;
 }
 
 .chatsidebar-close-button:hover {
-  background-color: var(--color-hover-accent); /* Using color variable */
+  background-color: var(--color-hover-accent);
 }
 
 /* MENU ICON FOR RESPONSIVE */
@@ -95,7 +99,7 @@
   position: fixed;
   top: 20px;
   left: 20px;
-  background-color: var(--color-accent); /* Using color variable */
+  background-color: var(--color-accent);
   padding: 10px;
   font-size: 20px;
   border-radius: 50%;
@@ -106,7 +110,7 @@
 }
 
 .chatsidebar-menu-icon:hover {
-  background-color: var(--color-hover-accent); /* Using color variable */
+  background-color: var(--color-hover-accent);
   transform: scale(1.1);
 }
 
@@ -120,19 +124,20 @@
   justify-content: center;
   padding: 12px 20px;
   cursor: pointer;
-  color: var(--color-text-primary); /* Using color variable */
+  color: var(--color-text-primary);
   transition: background-color 0.3s, color 0.3s;
   font-size: 16px;
   border-radius: 8px;
   overflow: hidden;
 }
-.chatsidebar-profile img{
+
+.chatsidebar-profile img {
   border-radius: 50%;
 }
 
 .chatsidebar-profile:hover {
   background-color: #333;
-  color: var(--color-accent); /* Using color variable */
+  color: var(--color-accent);
 }
 
 .chatsidebar-profile span {
@@ -144,38 +149,125 @@
   display: inline-block;
 }
 
-.chatsidebar-menu-icon {
-  display: none;
+/* BACKDROP FOR RESPONSIVENESS */
+.chatsidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
 }
 
-/* RESPONSIVENESS */
+.chatsidebar-backdrop.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* DISABLE SCROLLING */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* ========================= RESPONSIVENESS ========================= */
+
+/* MEDIA QUERY FOR LESS THAN 768px */
 @media screen and (max-width: 768px) {
   .chatsidebar {
-    display: none; /* Hide sidebar on mobile */
+    width: 201px; /* Default width for mobile */
+    transform: translateX(-100%); /* Initially hidden */
+    position: absolute; /* Absolutely positioned for mobile */
   }
-  
+
   .chatsidebar.expanded {
-    display: flex;
+    transform: translateX(0); /* Slide in */
+    z-index: 2;
   }
 
-  .chatsidebar-menu-icon {
-    display: block; /* Show menu icon on mobile */
-  }
-
-  .chatsidebar.expanded .chatsidebar-menu-item span,
-  .chatsidebar.expanded .chatsidebar-profile span {
-    display: inline-block;
-  }
-
+  /* Hide the sidebar when it's not expanded */
   .chatsidebar:not(.expanded) .chatsidebar-menu-items,
   .chatsidebar:not(.expanded) .chatsidebar-profile {
     display: none;
   }
 
-  /* Adjust menu icon position for mobile */
   .chatsidebar-menu-icon {
-    top: 100px; /* Position the menu icon near the top */
+    display: block;
+  }
+
+  /* Close Button */
+  .chatsidebar-close-button {
+    position: absolute;
+    top: 15px;
+    right: -50px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-accent);
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .chatsidebar-close-button:hover {
+    background-color: var(--color-hover-accent);
+    transform: rotate(90deg) scale(1.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .chatsidebar-menu-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--color-accent);
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  .chatsidebar-menu-icon:hover {
+    background-color: var(--color-hover-accent);
+    transform: scale(1.1);
+  }
+
+  /* Adjust menu icon position */
+  .chatsidebar-menu-icon {
+    top: 90px;
     left: 15px;
   }
 }
-/* ========================= */
+
+/* MEDIA QUERY FOR GREATER THAN 768px */
+@media screen and (min-width: 769px) {
+  .chatsidebar {
+    position: relative; /* Normal positioning on larger screens */
+    left: 0;
+    width: 80px; /* Sidebar takes up 80px of space */
+  }
+  /* .chatsidebar-profile {
+    width: auto;
+    position: static;
+  } */
+  /* Expand sidebar only on hover or interaction */
+  .chatsidebar.expanded {
+    width: 260px; /* Expanded sidebar */
+  }
+
+  .chatsidebar-menu-items,
+  .chatsidebar-profile {
+    display: block;
+  }
+}
+

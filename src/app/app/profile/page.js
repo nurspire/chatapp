@@ -566,21 +566,21 @@ export default function UserProfile() {
                     {isEditing ? (
                         <button
                             onClick={handleSave}
-                            className="button button-primary"
+                            className="profile-button button-primary"
                         >
                             Save Changes
                         </button>
                     ) : (
                         <button
                             onClick={handleEdit}
-                            className="button button-primary"
+                            className="profile-button button-primary"
                         >
                             <FiEdit2 className="button-icon" /> Edit Profile
                         </button>
                     )}
                     <button
                         onClick={handleDelete}
-                        className="button button-danger"
+                        className="profile-button button-danger"
                     >
                         <FiTrash2 className="button-icon" /> Delete Profile
                     </button>

@@ -1,7 +1,7 @@
 /* USER SIDEBAR */
 .user-sidebar {
   width: 300px; /* Fixed width for the user sidebar */
-  height: calc(100vh - 10.7rem);
+  height: calc(100vh - 9.8rem);
   margin-left: 10px;
   border-radius: 15px;
   background-color: var(--color-background-primary); /* Soft gray-blue for the sidebar background */
@@ -158,8 +158,9 @@
 /* MEDIA QUERY FOR SMALL SCREENS */
 @media (max-width: 768px) {
   .user-sidebar {
-    width: calc(100vw - 50px);
+    width: calc(100vw - 42px);
     margin-left: 15px;
+    height: calc(100vh - 11rem);
   }
 
   .user-item {

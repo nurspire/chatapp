@@ -141,35 +141,35 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="chat-detail">
-      <div className="signup-card">
-        <header className="signup-header">
-          <Link href="/app" className="close-button">
+    <div className="chat-detail-sexy">
+      <div className="signup-card-sexy">
+        <header className="signup-header-sexy">
+          <Link href="/app" className="signup-close-button">
             &times;
           </Link>
-          <h2 className="signup-title">Welcome to ChatApp</h2>
-          <p className="signup-description">Enter your details to get started</p>
+          <h2 className="signup-title-sexy">Welcome to ChatApp</h2>
+          <p className="signup-description-sexy">Enter your details to get started</p>
         </header>
-        <div className="signup-content">
+        <div className="signup-content-sexy">
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="username" className="form-label">
+            <div className="form-group-sexy">
+              <label htmlFor="username" className="form-label-sexy">
                 Username
               </label>
               <input
                 type="text"
                 id="username"
-                className={`form-input ${usernameError ? "error-border" : ""}`}
+                className={`input-sexy ${usernameError ? "error-border" : ""}`}
                 placeholder="Enter your username"
                 value={username}
                 onChange={handleUsernameChange}
                 required
               />
-              {usernameError && <span className="error-message">{usernameError}</span>}
+              {usernameError && <span className="error-message-sexy">{usernameError}</span>}
             </div>
-            <div className="form-group">
-              <label className="form-label">Profile Picture (Optional)</label>
-              <div className="avatar-container">
+            <div className="form-group-sexy">
+              <label className="form-label-sexy">Profile Picture (Optional)</label>
+              <div className="avatar-sexy-container">
                 <CldUploadWidget
                   uploadPreset="chat_app"
                   onSuccess={handleUploadSuccess}
@@ -180,22 +180,22 @@ const SignupForm = () => {
                   }}
                 >
                   {({ open }) => (
-                    <button type="button" className="file-label" onClick={() => open()}>
+                    <button type="button" className="file-upload-sexy" onClick={() => open()}>
                       Upload Image
                     </button>
                   )}
                 </CldUploadWidget>
 
                 {imageUrl && (
-                  <div className="image-preview-wrapper">
+                  <div className="image-preview-wrapper-sexy">
                     <img
                       src={imageUrl}
                       alt="Uploaded profile"
-                      className="preview-image"
+                      className="preview-image-sexy"
                     />
                     <button
                       type="button"
-                      className="remove-image-button"
+                      className="remove-image-button-sexy"
                       onClick={handleRemoveImage}
                     >
                       ×
@@ -204,7 +204,7 @@ const SignupForm = () => {
                 )}
               </div>
             </div>
-            <button type="submit" className="submit-button" disabled={loading}>
+            <button type="submit" className="submit-button-sexy" disabled={loading}>
               {loading ? "Submitting..." : "Start Chatting"}
             </button>
           </form>

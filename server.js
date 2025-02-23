@@ -1,266 +1,3 @@
-// // '''''''''''''''''Working 100% ===============================
-// require('dotenv').config();
-// const { createServer } = require('http');
-// const { parse } = require('url');
-// const next = require('next');
-// const { Server } = require('socket.io');
-// const mongoose = require('mongoose');
-// const Message = require('./src/utils/models/message');
-
-// const dev = process.env.NODE_ENV !== 'production';
-// const app = next({ dev });
-// const handle = app.getRequestHandler();
-
-// app.prepare().then(() => {
-//   const server = createServer((req, res) => {
-//     const parsedUrl = parse(req.url, true);
-//     handle(req, res, parsedUrl);
-//   });
-
-//   const io = new Server(server, {
-//     cors: {
-//       origin: "*",
-//       methods: ["GET", "POST"]
-//     }
-//   });
-
-//   const userSocketMap = {};
-
-//   mongoose
-//     .connect(process.env.MONGO_URI, {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     })
-//     .then(() => console.log('MongoDB connected'))
-//     .catch((err) => console.error('MongoDB connection error:', err));
-
-//   io.on('connection', (socket) => {
-//     console.log('A user connected:', socket.id);
-
-//     socket.on('set user', (userId) => {
-//       userSocketMap[userId] = socket.id;
-//       console.log(`User connected: ${userId} -> socket id: ${socket.id}`);
-//     });
-
-//     socket.on('chat message', async ({ text, sender, receiver, type, content }) => {
-//       console.log('Message received:', { text, sender, receiver, type, content });
-
-//       const message = new Message({ text, sender, receiver, type, content });
-//       const savedMessage = await message.save();
-
-//       const formattedMessage = {
-//         _id: savedMessage._id,
-//         text: savedMessage.text,
-//         sender: savedMessage.sender,
-//         receiver: savedMessage.receiver,
-//         timestamp: savedMessage.timestamp,
-//         type: savedMessage.type,
-//         content: savedMessage.content,
-//       };
-
-//       // Emit to both sender and receiver
-//       [sender, receiver].forEach(userId => {
-//         const socketId = userSocketMap[userId];
-//         if (socketId) {
-//           io.to(socketId).emit('chat message', formattedMessage);
-//         }
-//       });
-//     });
-
-//     socket.on('get chat history', async (userId, receiverId) => {
-//       const messages = await Message.find({
-//         $or: [
-//           { sender: userId, receiver: receiverId },
-//           { sender: receiverId, receiver: userId },
-//         ],
-//       }).sort({ timestamp: 1 });
-
-//       socket.emit('chat history', messages);
-//     });
-
-//     socket.on('initiate call', ({ caller, receiver, callType }) => {
-//       const receiverSocketId = userSocketMap[receiver];
-//       if (receiverSocketId) {
-//         io.to(receiverSocketId).emit('incoming call', { caller, callType });
-//       }
-//     });
-
-//     socket.on('accept call', ({ caller, receiver, callType }) => {
-//       const callerSocketId = userSocketMap[caller];
-//       if (callerSocketId) {
-//         io.to(callerSocketId).emit('call accepted', { receiver, callType });
-//       }
-//     });
-
-//     socket.on('end call', ({ caller, receiver }) => {
-//       [caller, receiver].forEach(userId => {
-//         const socketId = userSocketMap[userId];
-//         if (socketId) {
-//           io.to(socketId).emit('call ended');
-//         }
-//       });
-//     });
-
-//     socket.on('disconnect', () => {
-//       console.log('User disconnected:', socket.id);
-//       Object.keys(userSocketMap).forEach(userId => {
-//         if (userSocketMap[userId] === socket.id) {
-//           delete userSocketMap[userId];
-//         }
-//       });
-//     });
-//   });
-
-//   server.listen(3000, (err) => {
-//     if (err) throw err;
-//     console.log('> Ready on http://localhost:3000');
-//   });
-// });
-
-
-// '''''''''''''''''Working 100% ===============================
-// require('dotenv').config();
-// const { createServer } = require('http');
-// const { parse } = require('url');
-// const next = require('next');
-// const { Server } = require('socket.io');
-// const mongoose = require('mongoose');
-// const Message = require('./src/utils/models/message');
-
-// const dev = process.env.NODE_ENV !== 'production';
-// const app = next({ dev });
-// const handle = app.getRequestHandler();
-
-// app.prepare().then(() => {
-//   const server = createServer((req, res) => {
-//     const parsedUrl = parse(req.url, true);
-//     handle(req, res, parsedUrl);
-//   });
-
-//   const io = new Server(server, {
-//     cors: {
-//       origin: "*",
-//       methods: ["GET", "POST"]
-//     }
-//   });
-
-//   const userSocketMap = {};
-
-//   mongoose
-//     .connect(process.env.MONGO_URI, {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     })
-//     .then(() => console.log('MongoDB connected'))
-//     .catch((err) => console.error('MongoDB connection error:', err));
-
-//   io.on('connection', (socket) => {
-//     console.log('A user connected:', socket.id);
-
-//     socket.on('set user', (userId) => {
-//       userSocketMap[userId] = socket.id;
-//       console.log(`User connected: ${userId} -> socket id: ${socket.id}`);
-//     });
-
-//     socket.on('chat message', async ({ text, sender, receiver, type, content }) => {
-//       const message = new Message({ text, sender, receiver, type, content });
-//       const savedMessage = await message.save();
-
-//       const formattedMessage = {
-//         _id: savedMessage._id,
-//         text: savedMessage.text,
-//         sender: savedMessage.sender,
-//         receiver: savedMessage.receiver,
-//         timestamp: savedMessage.timestamp,
-//         type: savedMessage.type,
-//         content: savedMessage.content,
-//       };
-
-//       [sender, receiver].forEach(userId => {
-//         const socketId = userSocketMap[userId];
-//         if (socketId) {
-//           io.to(socketId).emit('chat message', formattedMessage);
-//         }
-//       });
-//     });
-
-//     socket.on('get chat history', async (userId, receiverId) => {
-//       const messages = await Message.find({
-//         $or: [
-//           { sender: userId, receiver: receiverId },
-//           { sender: receiverId, receiver: userId },
-//         ],
-//       }).sort({ timestamp: 1 });
-
-//       socket.emit('chat history', messages);
-//     });
-
-//     socket.on('initiate call', ({ caller, receiver, callType }) => {
-//       const receiverSocketId = userSocketMap[receiver];
-//       if (receiverSocketId) {
-//         io.to(receiverSocketId).emit('incoming call', { caller, callType });
-//       }
-//     });
-
-//     socket.on('accept call', ({ caller, receiver, callType }) => {
-//       const callerSocketId = userSocketMap[caller];
-//       if (callerSocketId) {
-//         io.to(callerSocketId).emit('call accepted', { receiver, callType });
-//       }
-//     });
-
-//     socket.on('reject call', ({ caller, receiver }) => {
-//       const callerSocketId = userSocketMap[caller];
-//       if (callerSocketId) {
-//         io.to(callerSocketId).emit('call rejected', { receiver });
-//       }
-//     });
-
-//     socket.on('end call', ({ caller, receiver }) => {
-//       [caller, receiver].forEach(userId => {
-//         const socketId = userSocketMap[userId];
-//         if (socketId) {
-//           io.to(socketId).emit('call ended');
-//         }
-//       });
-//     });
-
-//     socket.on('send offer', ({ offer, caller, receiver, callType }) => {
-//       const receiverSocketId = userSocketMap[receiver];
-//       if (receiverSocketId) {
-//         io.to(receiverSocketId).emit('receive offer', { offer, caller, callType });
-//       }
-//     });
-
-//     socket.on('send answer', ({ answer, caller, receiver }) => {
-//       const callerSocketId = userSocketMap[caller];
-//       if (callerSocketId) {
-//         io.to(callerSocketId).emit('receive answer', { answer, receiver });
-//       }
-//     });
-
-//     socket.on('send ice candidate', ({ candidate, caller, receiver }) => {
-//       const receiverSocketId = userSocketMap[receiver];
-//       if (receiverSocketId) {
-//         io.to(receiverSocketId).emit('receive ice candidate', { candidate, caller });
-//       }
-//     });
-
-//     socket.on('disconnect', () => {
-//       console.log('User disconnected:', socket.id);
-//       Object.keys(userSocketMap).forEach(userId => {
-//         if (userSocketMap[userId] === socket.id) {
-//           delete userSocketMap[userId];
-//         }
-//       });
-//     });
-//   });
-
-//   server.listen(3000, (err) => {
-//     if (err) throw err;
-//     console.log('> Ready on http://localhost:3000');
-//   });
-// });
 import dotenv from "dotenv"
 import { createServer } from "http"
 import { parse } from "url"
@@ -386,9 +123,9 @@ app.prepare().then(() => {
     })
 
     socket.on("chat message", async ({ text, sender, receiver, type, content }) => {
-      const message = new Message({ text, sender, receiver, type, content })
-      const savedMessage = await message.save()
-
+      const message = new Message({ text, sender, receiver, type, content });
+      const savedMessage = await message.save();
+    
       const formattedMessage = {
         _id: savedMessage._id,
         text: savedMessage.text,
@@ -397,14 +134,15 @@ app.prepare().then(() => {
         timestamp: savedMessage.timestamp,
         type: savedMessage.type,
         content: savedMessage.content,
-      }
-      ;[sender, receiver].forEach((userId) => {
-        const socketId = userSocketMap[userId]
+      };
+    
+      [sender, receiver].forEach((userId) => {
+        const socketId = userSocketMap[userId];
         if (socketId) {
-          io.to(socketId).emit("chat message", formattedMessage)
+          io.to(socketId).emit("chat message", formattedMessage);
         }
-      })
-    })
+      });
+    });
 
     socket.on("get chat history", async (userId, receiverId) => {
       const messages = await Message.find({
@@ -416,6 +154,7 @@ app.prepare().then(() => {
 
       socket.emit("chat history", messages)
     })
+
 
     socket.on("initiate call", async ({ caller, receiver, callType }) => {
       const receiverSocketId = userSocketMap[receiver]
@@ -487,4 +226,3 @@ app.prepare().then(() => {
     console.log("Server running on http://<Your-Laptop-IP>:3000")
   })
 })
-

@@ -1,4 +1,3 @@
-
 /* CHAT SECTION */
 .chat-section {
   display: flex;
@@ -52,6 +51,7 @@
   cursor: pointer;
   color: var(--color-text-primary);
   transition: color 0.3s;
+  background-color: var(--color-background-secondary);
 }
 
 .call-icon:hover {
@@ -171,14 +171,14 @@
   border-bottom-right-radius: 10px;
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 15px 20px;
   border-top: 1px solid var(--color-text-secondary);
   background-color: var(--color-background-primary);
 }
 
 .reply-bar input {
   flex: 1;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border: none;
   border-radius: 5px;
   background-color: var(--color-button-text);
@@ -310,7 +310,8 @@
   width: 100%;
 }
 
-.local-video, .remote-video {
+.local-video,
+.remote-video {
   width: 100%;
   border-radius: 15px;
   background-color: var(--color-button-background);
@@ -490,40 +491,6 @@
 }
 
 /* Responsive design */
-@media (max-width: 768px) {
-  .chat-section {
-    width: 100vw;
-  }
-
-  .call-ui-container {
-    width: 95%;
-    padding: 20px;
-  }
-
-  .video-call .video-container {
-    grid-template-columns: 1fr;
-  }
-
-  .call-header h3 {
-    font-size: 20px;
-  }
-
-  .control-btn {
-    padding: 12px;
-    font-size: 20px;
-  }
-
-  .user-avatar {
-    width: 30px;
-    height: 30px;
-  }
-}
-
-@media screen and (max-width: 769px) {
-  .chat-section {
-    display: none;
-  }
-}
 
 body.menu-open {
   overflow: hidden;
@@ -600,5 +567,156 @@ body.menu-open {
   color: #007bff;
 }
 
-/* ... (rest of the existing styles) ... */
+@media (max-width: 768px) {
+  .call-ui-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .video-call .video-container {
+    grid-template-columns: 1fr;
+  }
+
+  .call-header h3 {
+    font-size: 20px;
+  }
+
+  .control-btn {
+    padding: 12px;
+    font-size: 20px;
+  }
+
+  .user-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .chat-section {
+    border-radius: 10px;
+    width: 100vw !important;
+    height: 100vh !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 1 !important;
+  }
+}
+/* ==== Back Button ==== */
+/* Existing styles... */
+
+.back-button {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--color-accent);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: var(--color-hover-accent);
+}
+
+@media (max-width: 768px) {
+  .chat-section {
+    border-radius: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+  }
+
+  .back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .chat-top-bar {
+    padding-left: 60px;
+  }
+}
+
+/* Rest of the existing styles... */
+.chat-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
+}
+
+.chat-video {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
+}
+/* Add these styles to your existing CSS */
+
+.delete-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.delete-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+.delete-modal h3 {
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.delete-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.delete-options button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-options button:first-child {
+  background-color: #ff4444;
+  color: white;
+}
+
+.delete-options button:nth-child(2) {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-options button:last-child {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.deleted-message {
+  font-style: italic;
+  color: #6c757d;
+}
 

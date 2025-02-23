@@ -53,9 +53,9 @@ export default function Footer() {
               <Link href="#" aria-label="Instagram" className="social-icon">
                 <FaInstagram />
               </Link>
-              <Link href="#" aria-label="LinkedIn" className="social-icon">
+              {/* <Link href="#" aria-label="LinkedIn" className="social-icon">
                 <FaLinkedinIn />
-              </Link>
+              </Link> */}
               <Link href="#" aria-label="Twitter" className="social-icon">
                 <FaTwitter />
               </Link>

@@ -59,7 +59,7 @@
 
 .testimonial-card:hover {
   cursor: pointer;
-  background-color: #2c2c2ca8; /* Slightly darker background on hover */
+  background-color: var(  --color-border);
   box-shadow: 0 6px 10px var(--color-shadow-accent); /* Enhanced shadow on hover */
 }
 

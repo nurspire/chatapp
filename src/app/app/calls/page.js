@@ -1,5 +1,5 @@
 import React from 'react'
-import UserLogSection from '@/app/components/WebChat/CallSideBar/userLogSection/page'
+import LandingCall from '@/app/components/WebChat/CallSideBar/userLogSection/LandingCall'
 import CallSidebar from '@/app/components/WebChat/CallSideBar/callSidebar/callsidebar'
 import CallSearchbar from '@/app/components/WebChat/CallSideBar/callsrchbar/Callsearchbar'
 const page = () => {
@@ -9,7 +9,7 @@ const page = () => {
        <CallSearchbar/>
        <CallSidebar/>
        </div>
-       <UserLogSection/>
+       <LandingCall/>
     </div>
   )
 }

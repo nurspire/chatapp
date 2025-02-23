@@ -1,126 +1,239 @@
+:root {
+  --gradient-bg: linear-gradient(135deg, #f6f7f9 0%, #ffffff 100%);
+  --primary-color: #6366f1;
+  --secondary-color: #4f46e5;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --success-bg: #dcfce7;
+  --success-text: #16a34a;
+  --error-bg: #fee2e2;
+  --error-text: #dc2626;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
 
-  /* USER CALL LOG SECTION */
-  .user-call-log-section {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-background-primary); /* Primary background color */
-    border-radius: 10px;
-    width: 66vw;
-    height: calc(100vh - 5rem);
+.userCallLogSection {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  min-height: calc(100vh - 5rem);
+  background: var(--gradient-bg);
+  padding: 2rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.logTopBar {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sectionTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.callLogDisplay {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.callLogItem {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.callLogItem:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.receiverInfo {
+  padding: 1.5rem;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+}
+
+.receiverImage {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-color);
+}
+
+.receiverName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.callDetails {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: center;
+}
+
+.callInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.callTime, .callDuration {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.callStatus {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.callStatus.ended {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.callStatus.missed {
+  background: var(--error-bg);
+  color: var(--error-text);
+}
+
+.callType {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: white;
+  margin-left: auto;
+}
+
+.error, .loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 1024px) {
+  .userCallLogSection {
+    padding: 1rem;
   }
-  
-  .log-top-bar {
-    padding: 10px 20px;
-    background-color: var(--color-background-primary);
-    border-bottom: 1px solid var(--color-border); /* Lighter border for the bottom */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .section-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--color-text-primary); /* Primary text color */
-  }
-  
-  /* CALL LOG DISPLAY */
-  .call-log-display {
-    padding: 20px;
-    flex: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .call-log-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: var(--color-background-secondary);
-    color: var(--color-text-primary);
+  .logTopBar {
+    padding: 1rem;
     margin-bottom: 10px;
-    transition: background-color 0.3s;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
-  
-  .call-log-item:hover {
-    background-color: var(--color-accent); /* Accent color on hover */
+  .receiverInfo {
+    padding: 1rem;
   }
-  
-  /* CALL INFO */
-  .call-info {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+  .callDetails {
+    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
-  
-  .call-time, .call-duration {
-    font-size: 12px;
-    color: var(--color-text-secondary); /* Lighter text for time and duration */
+}
+
+@media (max-width: 768px) {
+ 
+  .userCallLogSection {
+    border-radius: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+}
+  .callDetails {
+    grid-template-columns: 1fr;
   }
-  
-  .call-status {
-    font-size: 12px;
-    font-weight: bold;
+
+  .callType {
+    margin: 0;
   }
-  
-  .call-status.answered {
-    color: green;
+
+  .receiverInfo {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
   }
-  
-  .call-status.missed {
-    color: red;
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.5rem;
   }
-  
-  .call-status.declined {
-    color: orange;
+
+  .receiverImage {
+    width: 48px;
+    height: 48px;
   }
-  
-  /* CALL TYPE ICON */
-  .call-type {
-    display: flex;
-    align-items: center;
+
+  .receiverName {
+    font-size: 1rem;
   }
-  
-  .call-icon {
-    color: var(--color-text-primary); /* Lighter text color for call type icon */
-    cursor: pointer;
+
+  .callStatus {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
   }
-  
-  /* SIDEBAR STYLES (Already exists in your sidebar) */
-  .user-item {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: var(--color-background-secondary); /* Background color for each user item */
-    color: var(--color-text-primary);
-    transition: background-color 0.3s;
-  }
-  
-  .user-item:hover {
-    background-color: var(--color-accent); /* Accent color on hover */
-  }
-  
-  .user-avatar {
-    margin-right: 10px;
-  }
-  
-  .user-name {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  /* RESPONSIVE DESIGN */
-  @media screen and (max-width: 769px) {
-    .user-call-log-section {
-      width: 100vw;
-      height: 100vh;
-    }
-  }
-  
+}
+.goBackButton {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.goBackButton:hover {
+  background-color: #0056b3;
+}
+
+.goBackButton:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.8);
+}

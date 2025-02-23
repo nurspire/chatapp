@@ -7,19 +7,19 @@ export default function Testimonials() {
       name: "Sarah Johnson",
       role: "Marketing Manager",
       content: "Echo has revolutionized our customer communication. It's intuitive and efficient!",
-      avatar: "/placeholder.svg?height=80&width=80",
+      avatar: "/moaz.png?height=80&width=80",
     },
     {
       name: "Michael Chen",
       role: "Small Business Owner",
       content: "The video messaging feature has helped us maintain a personal touch with our clients.",
-      avatar: "/placeholder.svg?height=80&width=80",
+      avatar: "/uneeb.png?height=80&width=80",
     },
     {
       name: "Emily Rodriguez",
       role: "Customer Support Lead",
       content: "Our team's productivity has skyrocketed since we started using Echo. Highly recommended!",
-      avatar: "/placeholder.svg?height=80&width=80",
+      avatar: "/fahad.png?height=80&width=80",
     },
   ]
 

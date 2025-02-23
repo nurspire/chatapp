@@ -28,15 +28,14 @@ export default function RootLayout({ children }) {
       <body>
            <div>
       
-      <div style={{ display: "flex"}}>
+      <div style={{ display: "flex", margin:"0", padding:"0"}}>
      <Sidebar/>
-      <div style={{ display: "block"}}>
+      <div style={{ display: "block", margin:"0", padding:"0"}}>
      <ChatNavbar/>
       {children}
      </div>
         </div>
       </div>
-      
       </body>
     </html>
   );

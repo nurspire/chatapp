@@ -7,11 +7,11 @@ import { IoAttach, IoSend, IoArrowBack } from "react-icons/io5";
 import { ChevronDown, CheckSquare } from 'lucide-react';
 import io from "socket.io-client";
 import jwt from "jsonwebtoken";
-import "./ChatSection.css";
 import CallInterface from "./audiocall/audiocall";
 import VideoCallInterface from "./videocall/videocall";
 import useWebRTC from "@/app/hooks/useWebRTC";
 import AttachmentMenu from "./attachment-menu/attachmenu";
+import "./chatsection.css";
 
 let socket;
 

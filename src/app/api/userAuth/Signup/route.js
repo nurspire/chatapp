@@ -83,6 +83,9 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
+const FRONTEND_URL =
+  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : process.env.BASE_URL || "http://localhost:3000";
+
 export async function POST(request) {
   try {
     await connectDB();
@@ -96,17 +99,15 @@ export async function POST(request) {
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      if(existingUser.password) {
-        // Email exists but is not verified
-        return NextResponse.json({error:"Email already signed up and verified." },{status:400});
-      }
-       else if (existingUser.isVerified) {
-        // Email exists and is already verified
+      if (existingUser.password) {
+        return NextResponse.json({ error: "Email already signed up and verified." }, { status: 400 });
+      } else if (existingUser.isVerified) {
         return NextResponse.json({ isVerified: true, message: "Email is already verified." });
-      } 
-       else {
-        // Email exists but is not verified
-        return NextResponse.json({ isVerified: false, message: "Verification email has already been sent. Please verify your email." });
+      } else {
+        return NextResponse.json({
+          isVerified: false,
+          message: "Verification email has already been sent. Please verify your email.",
+        });
       }
     }
 
@@ -140,10 +141,10 @@ export async function POST(request) {
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Email Verification",
-      text: `Please verify your email address by clicking on the following link:\n\n${process.env.BASE_URL}/verify-email?token=${verificationToken}`,
+      text: `Please verify your email address by clicking on the following link:\n\n${FRONTEND_URL}/verify-email?token=${verificationToken}`,
       html: `
         <p>To verify your email address, please click the link below:</p>
-        <a href="${process.env.BASE_URL}/verify-email?token=${verificationToken}">
+        <a href="${FRONTEND_URL}/verify-email?token=${verificationToken}">
           Verify your email
         </a>
       `,
@@ -151,8 +152,10 @@ export async function POST(request) {
 
     await transporter.sendMail(mailOptions);
 
-    return NextResponse.json({ isVerified: false, message: "Signup successful! Please check your email to verify your account." }, { status: 201 });
-
+    return NextResponse.json(
+      { isVerified: false, message: "Signup successful! Please check your email to verify your account." },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Signup Error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

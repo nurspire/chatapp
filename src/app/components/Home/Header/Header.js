@@ -189,12 +189,15 @@ export default function Header() {
           <li className="nav-item">
             <Link href="/about" className="nav-link">About</Link>
           </li>
-          <li className="nav-item" style={{cursor:"not-allowed"}}>
-            <Link href="/" className="nav-link">Support</Link>
-          </li>
           {/* <li className="nav-item" style={{cursor:"not-allowed"}}>
-            <Link href="pricing" className="nav-link">Pricing</Link>
+            <Link href="/" className="nav-link">Services</Link>
           </li> */}
+          {/* <li className="nav-item" style={{cursor:"not-allowed"}}>
+            <Link href="/" className="nav-link">Support</Link>
+          </li> */}
+          <li className="nav-item" style={{cursor:"not-allowed"}}>
+            <Link href="pricing" className="nav-link">Pricing</Link>
+          </li>
           <li className="nav-item">
             <Link href="/contact" className="nav-link">Contact</Link>
           </li>

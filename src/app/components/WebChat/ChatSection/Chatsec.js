@@ -102,11 +102,11 @@ export default function ChatSection() {
       setError("No token provided");
     }
 
-    // socket = io("http://localhost:3000");
-    // setSocketReady(true);
+    socket = io("http://localhost:3001");
+    setSocketReady(true);
 
-  socket = io(process.env.BASE_URL);
-  setSocketReady(true);
+  // socket = io(process.env.BASE_URL);
+  // setSocketReady(true);
 
 
     socket.on("incoming call", ({ caller, callType }) => {
@@ -495,14 +495,14 @@ export default function ChatSection() {
             )}
             <span className="user-name">{chatUser ? chatUser.user_name.replace(/^@/, "") : "Loading..."}</span>
           </div>
-          <div className="call-options">
+          {/* <div className="call-options">
             <button onClick={() => handleInitiateCall(false)}>
               <FiPhone size={20} className="call-icon" />
             </button>
             <button onClick={() => handleInitiateCall(true)}>
               <FiVideo size={20} className="call-icon" />
             </button>
-          </div>
+          </div> */}
         </div>
       )}
 

@@ -182,10 +182,10 @@ export default function FriendsList() {
               />
               {activeMenus.includes(friend.id) && (
                 <div className="menu-dropdown">
-                  <div className="menu-item">
+                  {/* <div className="menu-item">
                     <FaUser className="menu-icon-left" />
                     See Profile
-                  </div>
+                  </div> */}
                   {pinnedFriends.includes(friend) ? (
                     <div
                       className="menu-item"

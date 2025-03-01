@@ -102,7 +102,7 @@ export default function ChatSection() {
       setError("No token provided");
     }
 
-    socket = io("http://localhost:3001");
+    socket = io("chatapp-server-production-10cc.up.railway.app");
     setSocketReady(true);
 
   // socket = io(process.env.BASE_URL);
